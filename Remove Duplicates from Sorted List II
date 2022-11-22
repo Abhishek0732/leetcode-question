@@ -1,0 +1,27 @@
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        HashSet<Integer>set = new HashSet<>();
+        HashSet<Integer>set1 = new HashSet<>();
+        ListNode temp = head;
+        while(temp!=null){
+            if(!set.contains(temp.val))
+                set.add(temp.val);
+            else
+                set1.add(temp.val);
+            temp = temp.next;
+        }
+        ListNode newnode = new ListNode(-1);
+        ListNode newHead = newnode;
+        temp = head;
+        while(temp!=null){
+            if(!set1.contains(temp.val)){
+                newnode.next = temp;
+                newnode = newnode.next;
+            }
+            temp = temp.next;
+        }
+        newnode.next = null;
+        return newHead.next;
+        
+    }
+}
