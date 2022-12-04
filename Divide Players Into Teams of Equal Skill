@@ -1,0 +1,29 @@
+class Solution {
+    public long dividePlayers(int[] skill) {
+        Arrays.sort(skill);
+        int startindex = 0;
+        int endindex = skill.length-1;
+        List<List<Integer>> pairs = new ArrayList<>();
+        while(startindex<endindex){
+            int value1 = skill[startindex];
+            int value2 = skill[endindex];
+            startindex++;
+            endindex--;
+            List<Integer> pair = new ArrayList<>();
+            pair.add(value1);
+            pair.add(value2);
+            pairs.add(pair);
+        }
+        int total = pairs.get(0).get(0) + pairs.get(0).get(1);
+        long result = 0;
+        for(int i=0;i<pairs.size();i++){
+            List<Integer> pair = pairs.get(i);
+            int value1 = pair.get(0);
+            int value2 = pair.get(1);
+            if(value1+value2  != total) return -1;
+            result+=value1*value2;
+
+        }
+        return result;
+    }
+}
